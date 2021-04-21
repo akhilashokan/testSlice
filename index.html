@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@0.2.0/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Yellow Slice Test</title>
+</head>
+
+<body class="loading">
+    <div class="loader">
+        <div class="container">
+            <lottie-player autoplay loop src="https://assets1.lottiefiles.com/packages/lf20_yph8hirw.json">
+            </lottie-player>
+        </div>
+    </div>
+    <nav>
+        <a href="#"><img src="#" alt="logo"></a>
+        <a href="#">Contact-us</a>
+    </nav>
+
+    <aside>
+        <div class="nav-dots">
+            <a href="#one">.</a>
+            <a href="#two">.</a>
+        </div>
+    </aside>
+
+    <section class="one" id="one">
+        <div class="container" id="container_top">
+            <lottie-player id="animation_top" src="https://assets8.lottiefiles.com/packages/lf20_m33ou31x.json"
+                style="height: 1010px;">
+            </lottie-player>
+            <h1>Let’s bring our minds together.</h1>
+        </div>
+
+    </section>
+    <section class="two" id="two" data-aos="fade-up" data-aos-offset="300">
+        <div class="container">
+            <h1>About Sodexo Accelerator</h1>
+            <div class="blocks">
+                <div class="block video">
+                    <iframe src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        frameborder="0"></iframe>
+                </div>
+                <div class="block">
+                    <p>Sodexo Accelerator India seeks to be at the forefront of change by embracing emerging trends in
+                        consumer experiences across environments. The program explores associations in the gamut of food
+                        services, facility management and benefits & rewards, to deliver technologically-forward
+                        solutions. We are on a quest to connect and collaborate with innovative tech and non-tech
+                        start-ups.
+
+                        Start-ups operating in relevant solutions can expect scale and mentorship, as well as access to
+                        Sodexo’s client ecosystem.
+                        For Sodexo, such partnerships further our constant quest to lead positive change.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        var lottieContainer = document.getElementById('container_top');
+        var lottieElement = document.getElementById('animation_top');
+
+        var animation = LottieInteractivity.create({
+            player: lottieElement,
+            container: lottieContainer,
+            mode: 'scroll',
+            actions: [{
+                visibility: [0, 1.0],
+                type: 'seek',
+                frames: [0, 391],
+            }, ],
+        });
+
+
+        /*loader*/
+        document.addEventListener('readystatechange', () => {
+            if (document.readyState == "complete") {
+                setTimeout(() => {
+                    documentLoaded();
+                }, 3000);
+            }
+        })
+
+        const documentLoaded = () => {
+            document.body.classList.remove('loading');
+            animation.player.play();
+            animation.player.addEventListener('enterFrame', () => {
+                if (animation.player.currentFrame > 265 && window.scrollY < 200) {
+                    animation.player.goToAndPlay(100, true);
+                }
+            });
+        }
+
+
+
+        AOS.init();
+    </script>
+</body>
+
+</html>
