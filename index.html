@@ -21,8 +21,10 @@
         </div>
     </div>
     <nav>
-        <a href="#"><img src="#" alt="logo"></a>
-        <a href="#">Contact-us</a>
+        <a href="#"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sodexo_logo.svg/1200px-Sodexo_logo.svg.png"
+                alt="logo"></a>
+        <a href="#">Contact us</a>
     </nav>
 
     <aside>
@@ -68,6 +70,7 @@
     <script>
         var lottieContainer = document.getElementById('container_top');
         var lottieElement = document.getElementById('animation_top');
+        var splashDelay = 3000; /* change to set splash screen duration */
 
         var animation = LottieInteractivity.create({
             player: lottieElement,
@@ -81,18 +84,19 @@
         });
 
 
-        /*loader*/
+        /*splash screen */
         document.addEventListener('readystatechange', () => {
             if (document.readyState == "complete") {
                 setTimeout(() => {
                     documentLoaded();
-                }, 3000);
+                }, splashDelay);
             }
         })
 
         const documentLoaded = () => {
             document.body.classList.remove('loading');
             animation.player.play();
+            /* animation played once till 265th frame then loops */
             animation.player.addEventListener('enterFrame', () => {
                 if (animation.player.currentFrame > 265 && window.scrollY < 200) {
                     animation.player.goToAndPlay(100, true);
@@ -100,8 +104,23 @@
             });
         }
 
+        /*navbar background change*/
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                document.querySelector('nav').classList.add('active');
+            } else {
+                document.querySelector('nav').classList.remove('active');
+            }
+        });
 
+        /* animation loop check */
+        window.setInterval(() => {
+            if (window.scrollY < 200 && animation.player.isPaused) {
+                animation.player.play();
+            }
+        }, 10000);
 
+        /*Animate On Scroll*/
         AOS.init();
     </script>
 </body>

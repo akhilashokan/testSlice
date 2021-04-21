@@ -31,10 +31,26 @@ nav {
   opacity: 0;
   -webkit-animation: fadeIn 1s ease-in-out forwards 4s;
           animation: fadeIn 1s ease-in-out forwards 4s;
+  -webkit-transition: 500ms ease-in-out;
+  transition: 500ms ease-in-out;
+  text-transform: capitalize;
 }
 
 nav a {
   color: #fff;
+}
+
+nav img {
+  max-width: 10%;
+}
+
+nav.active {
+  background-color: #fff;
+  margin-top: -10px;
+}
+
+nav.active a {
+  color: #333;
 }
 
 aside {
